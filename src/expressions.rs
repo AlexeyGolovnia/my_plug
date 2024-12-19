@@ -665,4 +665,3 @@ fn my_sum8(s: &[Series]) -> PolarsResult<Series> {
 
     Ok(Series::new("a2".into(), &[t]))
 }
-
