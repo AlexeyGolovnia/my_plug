@@ -18,3 +18,4 @@ module-name = "my_plug._internal"
 [[tool.mypy.overrides]]
 module = "polars.utils.udfs"
 ignore_missing_imports = true
+
