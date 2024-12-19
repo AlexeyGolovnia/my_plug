@@ -563,24 +563,6 @@ fn my_sum3(s: &[Series]) -> PolarsResult<Series> {
     Ok(Series::new("a2".into(), &[r1 + r2 + r3 + r4]))
 }
 
-
-#[polars_expr(output_type=Int64)]
-fn my_sum4(s: &[Series]) -> PolarsResult<Series> {
-    let ca1 = s[0].i64()?;
-    let mut t: i64 = 0;
-
-    let _out: ChunkedArray<Int64Type> = ca1
-        .iter()
-        .map(|x1| {
-            t += x1.unwrap();
-            x1
-        })
-        .collect();
-
-    // dbg!(&t);
-    Ok(Series::new("a2".into(), &[t]))
-}
-
 #[polars_expr(output_type=Int64)]
 fn my_sum5(s: &[Series]) -> PolarsResult<Series> {
     let ca1 = s[0].i64()?;

@@ -210,14 +210,6 @@ def my_sum3(expr: IntoExprColumn) -> pl.Expr:
         is_elementwise=True,
     )
 
-def my_sum4(expr: IntoExprColumn) -> pl.Expr:
-    return register_plugin_function(
-        args=[expr],
-        plugin_path=LIB,
-        function_name="my_sum4",
-        is_elementwise=True,
-    )
-
 def my_sum5(expr: IntoExprColumn) -> pl.Expr:
     return register_plugin_function(
         args=[expr],
