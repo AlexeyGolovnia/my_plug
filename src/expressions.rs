@@ -4,7 +4,8 @@ use pyo3_polars::derive::polars_expr;
 use std::fmt::Write;
 use rand::prelude::*;
 use serde::Deserialize;
-use pyo3_polars::export::polars_core::utils::arrow::array::{Array as PolarsArray, Int64Array as PolarsInt64Array};
+// use pyo3_polars::export::polars_core::utils::arrow::array::{Array as PolarsArray, Int64Array as PolarsInt64Array};
+use pyo3_polars::export::polars_core::utils::arrow::array::{Int64Array as PolarsInt64Array};
 use linregress::{FormulaRegressionBuilder, RegressionDataBuilder, RegressionModel};
 use std::collections::HashSet;
 
@@ -193,7 +194,7 @@ fn regression(s: &[Series]) -> PolarsResult<Series> {
 
     for (index, i) in s.iter().enumerate() {
         let ca: &ChunkedArray<Float64Type> = i.f64()?;
-        let out: ChunkedArray<Float64Type> = ca
+        let _out: ChunkedArray<Float64Type> = ca
             .iter()
             .enumerate()
             .map(|(x1, x2)| {
@@ -213,10 +214,10 @@ fn regression(s: &[Series]) -> PolarsResult<Series> {
         let out: ChunkedArray<Float64Type> = ca
             .iter()
             .enumerate()
-            .filter(|(x1, x2 )| {
+            .filter(|(x1, _x2 )| {
                 !my_set.contains(&x1)
             })
-            .map(|(x1, x2)| { x2 })
+            .map(|(_x1, x2)| { x2 })
             .collect();
         
         let t = out.to_vec_null_aware().unwrap_left();  
@@ -245,7 +246,7 @@ fn regression(s: &[Series]) -> PolarsResult<Series> {
     let out: ChunkedArray<Float64Type> = ca
         .iter()
         .enumerate()
-        .map(|(x1, x2)| {
+        .map(|(x1, _x2)| {
             if !my_set_out.contains(&x1) {
                 calc(&model, &x1, &s)
             } else {
@@ -670,7 +671,7 @@ fn my_sum8(s: &[Series]) -> PolarsResult<Series> {
     print!("len t4 {}", ca4.len());
     let mut t: i64 = 0;
 
-    let out = ca1
+    let _out = ca1
         .iter()
         .zip(ca2.iter())
         .zip(ca3.iter())
