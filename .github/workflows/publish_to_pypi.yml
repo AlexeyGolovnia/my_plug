@@ -154,4 +154,6 @@ jobs:
         with:
           command: upload
           args: --non-interactive --skip-existing *
+        env:
+          MATURIN_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
 
