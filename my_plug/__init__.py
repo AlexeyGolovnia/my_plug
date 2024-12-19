@@ -128,27 +128,12 @@ def foo3(expr: IntoExprColumn) -> pl.Expr:
         is_elementwise=True,
     )
 
-def list_between(expr: IntoExprColumn, expr2: IntoExprColumn, expr3: IntoExprColumn) -> pl.Expr:
-    return register_plugin_function(
-        args=[expr, expr2, expr3],
-        plugin_path=LIB,
-        function_name="list_between",
-        is_elementwise=True,
-    )
 
 def list_between3(expr: IntoExprColumn, expr2: IntoExprColumn, expr3: IntoExprColumn) -> pl.Expr:
     return register_plugin_function(
         args=[expr, expr2, expr3],
         plugin_path=LIB,
         function_name="list_between3",
-        is_elementwise=True,
-    )
-
-def list_between2(expr: IntoExprColumn) -> pl.Expr:
-    return register_plugin_function(
-        args=[expr],
-        plugin_path=LIB,
-        function_name="list_between2",
         is_elementwise=True,
     )
 
