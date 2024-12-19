@@ -69,7 +69,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ github.sha }}
+          name: wheels
           path: dist
 
   windows:
@@ -96,7 +96,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ github.sha }}
+          name: wheels
           path: dist
 
   macos:
@@ -121,7 +121,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ github.sha }}
+          name: wheels
           path: dist
 
   sdist:
@@ -136,7 +136,7 @@ jobs:
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ github.sha }}
+          name: wheels
           path: dist
 
   release:
@@ -150,7 +150,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: wheels-${{ github.sha }}
+          name: wheels
       - name: Publish to PyPI
         uses: PyO3/maturin-action@v1
         with:
